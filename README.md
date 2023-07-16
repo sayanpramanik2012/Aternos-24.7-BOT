@@ -1,6 +1,7 @@
 # Aternos Server Bot Setup Guide
 
 This guide will help you set up and run a Minecraft bot on an Aternos server using Replit and UptimeRobot. Follow these steps to ensure a smooth setup.
+https://youtu.be/mRgLIu1sLMQ
 
 ## Requirements
 
