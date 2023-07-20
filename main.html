@@ -2,8 +2,77 @@
 <html>
   <head>
     <title>Main Page</title>
+    <style>
+      body {
+        font-family: Arial, sans-serif;
+        background-color: #f0f0f0;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        height: 100vh;
+        margin: 0;
+      }
+
+      .container {
+        text-align: center;
+        background-color: #ffffff;
+        border: 1px solid #e1e1e1;
+        border-radius: 8px;
+        padding: 20px;
+        box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+      }
+
+      h1 {
+        color: #007bff;
+        margin-bottom: 20px;
+      }
+
+      h2 {
+        color: #555555;
+      }
+
+      button {
+        margin: 5px;
+        padding: 10px 20px;
+        font-size: 16px;
+        cursor: pointer;
+        background-color: #007bff;
+        color: #ffffff;
+        border: none;
+        border-radius: 4px;
+        transition: background-color 0.2s ease-in-out;
+      }
+
+      button:hover {
+        background-color: #0056b3;
+      }
+    </style>
+    <script src="/socket.io/socket.io.js"></script>
+    <script>
+      const socket = io();
+
+      socket.on('bot_status', function (msg) {
+        const statusElement = document.getElementById('botStatus');
+        statusElement.innerText = msg;
+      });
+
+      // Function to automatically start the bot when the page loads for the first time
+      function autoStartBot() {
+        socket.emit('control_bot', 'start');
+      }
+
+      // Trigger the autoStartBot function when the page loads
+      window.onload = autoStartBot;
+    </script>
   </head>
   <body>
-    <h1>Welcome to the Main Page!</h1>
+    <div class="container">
+      <h1>Welcome to the Main Page!</h1>
+      <h2 id="botStatus"></h2>
+
+      <button onclick="startBot()">Start Bot</button>
+      <button onclick="stopBot()">Stop Bot</button>
+      <button onclick="reconnectBot()">Reconnect Bot</button>
+    </div>
   </body>
 </html>
