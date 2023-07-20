@@ -1,7 +1,13 @@
 # Aternos Server Bot Setup Guide
 
+**Update: 
+  - added GUI for Webpage
+  - added start, stop, reconnect bot option on webpage
+  - Removed ServerTime update due to mismatch of time
+
+[Watch the Video Tutorial!](https://youtu.be/mRgLIu1sLMQ)**
+
 This guide will help you set up and run a Minecraft bot on an Aternos server using Replit and UptimeRobot. Follow these steps to ensure a smooth setup.
-https://youtu.be/mRgLIu1sLMQ
 
 ## Requirements
 
@@ -53,3 +59,5 @@ Once the bot logs in to the Minecraft server, it will print a message in the Rep
 Using Replit ensures that the bot runs on a virtual machine on your account, and UptimeRobot pings the Replit server every 5 minutes, preventing the bot from sleeping. This setup ensures the bot remains active and responsive on your Aternos server.
 
 Happy botting! 🤖🎮
+
+🔗 GitHub Link: [GitHub Repo](https://github.com/sayanpramanik2012/Aternos-24.7-BOT)
