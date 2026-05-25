@@ -4,13 +4,13 @@ const http = require('http');
 const { Server } = require('socket.io');
 const mineflayer = require('mineflayer');
 
-const serverHost = process.env.SERVER_HOST || 'DOOMS_DAY_REBORN.aternos.me';
-const serverPort = parseInt(process.env.SERVER_PORT || '59173', 10);
+const serverHost = process.env.SERVER_HOST || 'ox.aternos.host';
+const serverPort = parseInt(process.env.SERVER_PORT || '39320', 10);
 const botUsername = process.env.BOT_USERNAME || '247_Monitor';
-const minecraftVersion = process.env.MC_VERSION || false;
+const minecraftVersion = process.env.MC_VERSION || '1.20.4';
 const reconnectInterval = parseInt(process.env.RECONNECT_INTERVAL_MS || '40000', 10);
 const antiAfkInterval = parseInt(process.env.ANTI_AFK_INTERVAL_MS || '20000', 10);
-const httpPort = parseInt(process.env.PORT || '3000', 10);
+const httpPort = parseInt(process.env.PORT || '5000', 10);
 
 const app = express();
 const server = http.createServer(app);
@@ -72,7 +72,7 @@ io.on('connection', (socket) => {
   });
 });
 
-server.listen(httpPort, () => {
+server.listen(httpPort, '0.0.0.0', () => {
   console.log(`HTTP server listening on port ${httpPort}.`);
   createBot();
 });
@@ -116,6 +116,17 @@ function createBot() {
     console.log(`Bot "${bot.username}" spawned in the world.`);
     io.emit('bot_status', `Bot ${bot.username} spawned. Anti-AFK active.`);
     startAntiAfk();
+  });
+
+  // Auto-accept forced resource packs so the bot can join servers that require them
+  newBot._client.on('add_resource_pack', (packet) => {
+    console.log('Resource pack request received, accepting...');
+    newBot._client.write('resource_pack_receive', { uuid: packet.uuid, result: 3 }); // accepted
+    setTimeout(() => {
+      if (newBot._client) {
+        newBot._client.write('resource_pack_receive', { uuid: packet.uuid, result: 0 }); // successfully_loaded
+      }
+    }, 2000);
   });
 
   bot.on('health', () => {
