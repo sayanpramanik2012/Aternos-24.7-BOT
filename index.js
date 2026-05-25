@@ -118,6 +118,17 @@ function createBot() {
     startAntiAfk();
   });
 
+  // Auto-accept forced resource packs so the bot can join servers that require them
+  newBot._client.on('add_resource_pack', (packet) => {
+    console.log('Resource pack request received, accepting...');
+    newBot._client.write('resource_pack_receive', { uuid: packet.uuid, result: 3 }); // accepted
+    setTimeout(() => {
+      if (newBot._client) {
+        newBot._client.write('resource_pack_receive', { uuid: packet.uuid, result: 0 }); // successfully_loaded
+      }
+    }, 2000);
+  });
+
   bot.on('health', () => {
     if (bot && bot.health <= 0) {
       console.log('Bot has died, will respawn automatically.');
