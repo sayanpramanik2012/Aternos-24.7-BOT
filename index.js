@@ -10,7 +10,7 @@ const botUsername = process.env.BOT_USERNAME || '247_Monitor';
 const minecraftVersion = process.env.MC_VERSION || false;
 const reconnectInterval = parseInt(process.env.RECONNECT_INTERVAL_MS || '40000', 10);
 const antiAfkInterval = parseInt(process.env.ANTI_AFK_INTERVAL_MS || '20000', 10);
-const httpPort = parseInt(process.env.PORT || '3000', 10);
+const httpPort = parseInt(process.env.PORT || '5000', 10);
 
 const app = express();
 const server = http.createServer(app);
@@ -72,7 +72,7 @@ io.on('connection', (socket) => {
   });
 });
 
-server.listen(httpPort, () => {
+server.listen(httpPort, '0.0.0.0', () => {
   console.log(`HTTP server listening on port ${httpPort}.`);
   createBot();
 });
