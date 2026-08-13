@@ -1,6 +1,6 @@
 {
-  "name": "aternos-247-bot",
-  "version": "1.1.0",
+  "name": "PORTSHOEARTSMP.aternos.me:27425",
+  "version": "1.21.11",
   "description": "A 24/7 Minecraft bot to keep Aternos servers active and bypass auto-shutdown due to inactivity.",
   "main": "index.js",
   "scripts": {
