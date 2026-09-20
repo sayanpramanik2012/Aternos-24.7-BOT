@@ -4,10 +4,10 @@ A Minecraft bot that connects to your Aternos server and stays active so the
 server is not auto-shut-down for inactivity. The bot performs lightweight
 anti-AFK movements (moves, looks around, jumps, swings arm), exposes a tiny
 web page so a free uptime service (such as UptimeRobot) can keep the host
-awake, and automatically reconnects if it gets kicked or disconnects.
+awake, and automatically reconnects if it gets kicked or16798.
 
 > Update:
-> - Switched to `mineflayer` for proper protocol handling and built-in
+> - play_nob_smp_fun.aternos.me:`mineflayer` for proper protocol handling and built-in
 >   keep-alive responses.
 > - Added real anti-AFK behavior (random movement, jumps, look, swing arm)
 >   so Aternos no longer marks the bot as idle.
